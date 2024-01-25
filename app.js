@@ -1,7 +1,7 @@
 const gameboard = document.querySelector("#gameboard")
 
-//used to represent an empty space on the board
-const dark = '<div class="piece" id="dark"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d=\"M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z\"/></svg></div>'
+//graphic to represent an empty space on the board
+const empty = '<div class="piece" id="dark"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d=\"M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z\"/></svg></div>'
 
 // Retrieve the height and width of the board from sessionStorage
 const storedHeight = sessionStorage.getItem("inputHeight");
@@ -17,7 +17,7 @@ const startPieces = []
 function populateBoard() {
     for(let i = 0; i < storedHeight * storedWidth; i++)
     {
-        startPieces.push(dark)
+        startPieces.push(empty)
     }
 }
 
@@ -30,16 +30,19 @@ function createBoard () {
 
         square.setAttribute('square-id', i)
 
-        // if(i % 2 == 0)
-        // {
-        //     square.classList.add('blue')
-        // } else {
-        //     square.classList.add('red')
-        // }
+        //make a specific piece red or yellow
+        if(i == 1)
+        {
+            square.firstChild.classList.add('red')
+        } else if (i == 2) {
+            square.firstChild.classList.add('yellow')
+        }
 
         gameboard.append(square);
     })
 }
+
+
 
 populateBoard();
 createBoard();

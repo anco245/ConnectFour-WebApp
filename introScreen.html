@@ -9,7 +9,21 @@
   </head>
   <body>    
     <h1>Connect Four Online Game</h1>
-    <p>In order to start, enter the size of the board you want to play with (at least 4x4) and then click on start</p>
+
+    <p>Before you press start, enter the height and width of the board<br>Minimum 4x4 and maximum 8x22</p>
+
+    <form>
+      <label>Height: <input type="number" name="height" id="height"><br></label><br>
+      <label>Width: <input type="number" name="width" id="width"><br></label><br>
+
+      <p>Will Player 1 be Red or Blue?</p>
+      <input type="radio" name="playerColor" id="playerColor" value="red" checked> Red
+      <input type="radio" name="playerColor" id="playerColor" value="blue"> Blue
+      <br>
+      <br>
+
+      <button type="button" onclick="submitForm()">Start</button>
+    </form> 
 
     <script>
       function submitForm() {
@@ -25,19 +39,6 @@
         sessionStorage.setItem("inputWidth", inputWidth);
       }
     </script>
-
-    <form>>
-      <label>Enter height: <input type="number" name="height" id="height"><br></label><br>
-      <label>Enter width: <input type="number" name="width" id="width"><br></label><br>
-
-      <p>Will Player 1 be Red or Blue?</p>
-      <input type="radio" name="playerColor" id="playerColor" value="red" checked> Red
-      <input type="radio" name="playerColor" id="playerColor" value="blue"> Blue
-      <br>
-      <br>
-
-      <button type="button" onclick="submitForm()">Start</button>
-    </form> 
 
   </body>
 </html>

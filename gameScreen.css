@@ -1,7 +1,13 @@
 #gameboard {
   display: flex;
+  background-color: rgb(0, 89, 190);
   flex-wrap: wrap;
+  margin: auto;
   border: 1px solid black; /* Border style, color, and width */
+}
+
+#titleForPage {
+  text-align: center;
 }
 
 .square {
@@ -16,10 +22,18 @@
   margin: 5px;
 }
 
+.piece {
+  fill: white;
+}
+
 .red {
   fill: rgb(189, 0, 0)
 }
 
 .blue {
   fill:rgb(0, 89, 190)
+}
+
+.yellow {
+  fill: rgb(211, 211, 46);
 }
