@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Connect Four</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize Values</title>
   </head>
-  <body>
-    <h1>Connect Four Game</h1>
+  <body>    
+    <h1>Initialize Values</h1>
 
-    <form method="POST" action='action.php'>
-      <label for="firstNum">First Number: <input id="firstNum" type="text" required /></label>
-      <input type="submit" value="Submit" />
-    </form>
+    <script>
+      function submitForm() {
+        // Get the input value
+        var inputHeight = document.getElementById("height").value;
+        var inputWidth = document.getElementById("width").value;
+
+        // Redirect to another page
+        window.location.href = "boardScreen.html";
+
+        // Optionally, you can use localStorage to store the data for later use
+        sessionStorage.setItem("inputHeight", inputHeight);
+        sessionStorage.setItem("inputWidth", inputWidth);
+      }
+    </script>
+
+    <form>>
+      <label>Enter height: <input type="number" name="height" id="height"><br></label><br>
+      <label>Enter width: <input type="number" name="width" id="width"><br></label><br>
+
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form> 
 
   </body>
 </html>
