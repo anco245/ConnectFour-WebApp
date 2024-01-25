@@ -1,0 +1,25 @@
+#gameboard {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black; /* Border style, color, and width */
+}
+
+.square {
+  height: 60px;
+  width: 60px;
+  position: relative;
+}
+
+.square svg {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+}
+
+.red {
+  fill: rgb(189, 0, 0)
+}
+
+.blue {
+  fill:rgb(0, 89, 190)
+}

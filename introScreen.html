@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Initialize Values</title>
+
+    <link rel="stylesheet" href="introScreen.css">
   </head>
   <body>    
-    <h1>Initialize Values</h1>
+    <h1>Connect Four Online Game</h1>
+    <p>In order to start, enter the size of the board you want to play with (at least 4x4) and then click on start</p>
 
     <script>
       function submitForm() {
@@ -15,7 +18,7 @@
         var inputWidth = document.getElementById("width").value;
 
         // Redirect to another page
-        window.location.href = "boardScreen.html";
+        window.location.href = "gameScreen.html";
 
         // Optionally, you can use localStorage to store the data for later use
         sessionStorage.setItem("inputHeight", inputHeight);
@@ -27,7 +30,7 @@
       <label>Enter height: <input type="number" name="height" id="height"><br></label><br>
       <label>Enter width: <input type="number" name="width" id="width"><br></label><br>
 
-      <button type="button" onclick="submitForm()">Submit</button>
+      <button type="button" onclick="submitForm()">Start</button>
     </form> 
 
   </body>
