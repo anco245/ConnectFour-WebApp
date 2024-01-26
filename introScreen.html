@@ -16,9 +16,9 @@
       <label>Height: <input type="number" name="height" id="height"><br></label><br>
       <label>Width: <input type="number" name="width" id="width"><br></label><br>
 
-      <p>Will Player 1 be Red or Blue?</p>
+      <p>Will Player 1 be Red or Yellow?</p>
       <input type="radio" name="playerColor" id="playerColor" value="red" checked> Red
-      <input type="radio" name="playerColor" id="playerColor" value="blue"> Blue
+      <input type="radio" name="playerColor" id="playerColor" value="yellow"> Yellow
       <br>
       <br>
 
@@ -31,12 +31,24 @@
         var inputHeight = document.getElementById("height").value;
         var inputWidth = document.getElementById("width").value;
 
+        var inputPlayer1Color = document.getElementById("playerColor").value;
+        var inputPlayer2Color;
+
+        if(inputPlayer1Color == 'red')
+        {
+          inputPlayer2Color = 'yellow'
+        } else {
+          inputPlayer2Color = 'red'
+        }
+
         // Redirect to another page
         window.location.href = "gameScreen.html";
 
         // Optionally, you can use localStorage to store the data for later use
         sessionStorage.setItem("inputHeight", inputHeight);
         sessionStorage.setItem("inputWidth", inputWidth);
+        sessionStorage.setItem("inputPlayer1Color", inputPlayer1Color);
+        sessionStorage.setItem("inputPlayer2Color", inputPlayer2Color);
       }
     </script>
 

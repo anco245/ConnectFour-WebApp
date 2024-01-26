@@ -12,6 +12,22 @@
     </div>
 
     <div id="gameboard"></div>
+
+    <div id="form">
+      <form>
+        <label>Column: <input type="number" name="column" id="column"><br></label><br>
+        <button type="button" onclick="submitForm()">Enter</button>
+      </form>
+    </div>
+
+    <script>
+      function submitForm() {
+        // Get the input value
+        var inputCol = document.getElementById("column").value;
+
+        insert(inputCol)
+      }
+    </script>
     
     <script src="app.js"></script>
 
