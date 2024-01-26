@@ -35,13 +35,16 @@
         var inputHeight = document.getElementById("height").value;
         var inputWidth = document.getElementById("width").value;
 
-        var inputPlayer1Color = document.getElementById("playerColor").value;
+        var radioButtons = document.getElementById("playerColor").value;
+        var inputPlayer1Color;
         var inputPlayer2Color;
 
-        if(inputPlayer1Color == 'red')
+        if(radioButtons[0].checked)
         {
+          inputPlayer1Color = 'red';
           inputPlayer2Color = 'yellow';
         } else {
+          inputPlayer1Color = 'yellow';
           inputPlayer2Color = 'red';
         }
 
