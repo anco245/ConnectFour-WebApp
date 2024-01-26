@@ -65,7 +65,7 @@ function insert (col) {
     {
         var square = document.querySelector('div[square-id="' + i + '"]');
 
-        if(!square.firstChild.firstChild.classList.contains['yellow'] || square.firstChild.firstChild.classList.contains['red'])
+        if(!(square.firstChild.firstChild.classList.contains('yellow') || square.firstChild.firstChild.classList.contains('red')))
         {
             square.firstChild.firstChild.classList.add(playerColor);
             break;
