@@ -61,7 +61,7 @@ function insert (col) {
         playerColor = storedPlayer2Color;
     }
 
-    for(let i = (storedHeight * storedWidth) - storedWidth + col; i > 0; i-=storedWidth)
+    for(let i = (storedHeight * storedWidth) - storedWidth + col; i >= 0; i-=storedWidth)
     {
         var square = document.querySelector('div[square-id="' + i + '"]');
 
