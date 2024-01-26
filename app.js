@@ -14,12 +14,15 @@ document.getElementById("gameboard").style.width = (storedWidth * 60) + "px";
 const storedPlayer1Color = sessionStorage.getItem("inputPlayer1Color");
 const storedPlayer2Color = sessionStorage.getItem("inputPlayer2Color");
 
-const startPieces = [];
+let currentColor;
 
 let turn = 0;
+
+const startPieces = [];
+
 let lastPos;
 
-
+let winner = 0;
 
 
 function populateBoard() {
@@ -46,13 +49,11 @@ function insert(col) {
 
     col = col-1;
 
-    let playerColor;
-
-    if (turn%2==0)
+    if(turn%2==0)
     {
-        playerColor = storedPlayer1Color;
+        currentColor = storedPlayer1Color;
     } else {
-        playerColor = storedPlayer2Color;
+        currentColor = storedPlayer2Color;
     }
 
     for(let i = (storedHeight * storedWidth) - storedWidth + col; i >= 0; i-=storedWidth)
@@ -61,7 +62,8 @@ function insert(col) {
 
         if(!(square.firstChild.firstChild.classList.contains('yellow') || square.firstChild.firstChild.classList.contains('red')))
         {
-            square.firstChild.firstChild.classList.add(playerColor);
+            square.firstChild.firstChild.classList.add(currentColor);
+            lastPos = i;
             break;
         }
     }
@@ -69,8 +71,15 @@ function insert(col) {
     turn++;
 }
 
-function horizontal(squareId, color) {
+function horizontal(squareId) {
     let count = 0;
+
+    if(turn%2==0)
+    {
+        currentColor = storedPlayer1Color;
+    } else {
+        currentColor = storedPlayer2Color;
+    }
 
     let row = (squareId / storedWidth) + 1;
     let upper = (storedWidth * row) - 1;
@@ -83,9 +92,9 @@ function horizontal(squareId, color) {
         if(count==3)
         {
             return true;
-        } else if (square.firstChild.firstChild.classList.contains(color)) {
+        } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
             count++;
-        } else if (!square.firstChild.firstChild.classList.contains(color)) {
+        } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
             count = 0;
         }
     }
@@ -93,9 +102,16 @@ function horizontal(squareId, color) {
     return false;
 }
 
-function vertical(squareId, color)
+function vertical(squareId)
 {
     let count = 0;
+
+    if(turn%2==0)
+    {
+        currentColor = storedPlayer1Color;
+    } else {
+        currentColor = storedPlayer2Color;
+    }
 
     let lower = (squareId / storedWidth);
     let upper = ((storedWidth * storedHeight) - 1) - ((storedWidth - 1) - lower);
@@ -107,9 +123,9 @@ function vertical(squareId, color)
         if(count==3)
         {
             return true;
-        } else if (square.firstChild.firstChild.classList.contains(color)) {
+        } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
             count++;
-        } else if (!square.firstChild.firstChild.classList.contains(color)) {
+        } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
             count = 0;
         }
     }
@@ -117,6 +133,7 @@ function vertical(squareId, color)
     return false;
 }
 
+/*
   private boolean leftDiagonal(int x, int y)
   {
     int startx, endx = 0;
@@ -210,31 +227,48 @@ function vertical(squareId, color)
 
     return count==4;
   }
+*/
 
-  public boolean hasWinner()
-  {
-    if(Main.turn < 7)
+function hasWinner()
+{
+    if(turn < 7)
     {
-      return false;
+        return false;
     }
 
-    if (Main.turn > 10) {
+    /*
+    if (turn > 10) {
       if (leftDiagonal(lastPos.get(0), lastPos.get(1))) {
         return true;
       } else if (rightDiagonal(lastPos.get(0), lastPos.get(1))) {
         return true;
       }
     }
+    */
 
-    if(horizontal(lastPos.get(0), lastPos.get(1)))
+    if(horizontal(lastPos, currentColor))
     {
-      return true;
-    } else if (vertical(lastPos.get(0), lastPos.get(1))) {
-      return true;
+      if(currentColor == storedPlayer1Color)
+      {
+        winner = 1;
+        return true;
+      } else {
+        winner = 2;
+        return true;
+      }
+    } else if (vertical(lastPos, currentColor)) {
+        if(currentColor == storedPlayer1Color)
+        {
+            winner = 1;
+            return true;
+        } else {
+            winner = 2;
+            return true;
+        }
     }
 
     return false;
-  }
+}
 
 
 populateBoard();
