@@ -19,9 +19,10 @@
         <label>Height: <input type="number" name="height" id="height"><br></label><br>
         <label>Width: <input type="number" name="width" id="width"><br></label><br>
   
+        <!--name makes sure if another radio button is selected, that the previous one is deselected-->
         <p>Will Player 1 be Red or Yellow?</p>
-        <input type="radio" name="playerColor" id="playerColor" value="red" checked> Red
-        <input type="radio" name="playerColor" id="playerColor" value="yellow"> Yellow
+        <input type="radio" class="playerColor" name="playerColor" value="red" checked> Red
+        <input type="radio" class="playerColor" name="playerColor" value="yellow"> Yellow
         <br>
         <br>
   
@@ -35,9 +36,11 @@
         var inputHeight = document.getElementById("height").value;
         var inputWidth = document.getElementById("width").value;
 
-        var radioButtons = document.getElementById("playerColor").value;
+        var radioButtons = document.getElementsByClassName("playerColor");
         var inputPlayer1Color;
         var inputPlayer2Color;
+
+        console.log(radioButtons);
 
         if(radioButtons[0].checked)
         {
