@@ -7,17 +7,15 @@
     <title>Connect Four</title>
   </head>
   <body>
-    <div id="titleForPage">
-      <h1>Winner</h1>
-    </div>
-
-    <p id="output">Player </p>
+    <p id="winInfo">Some text</p>
 
     <script>
-        var message = "Player $(winner) Wins!"
-        
-        // Access the HTML element by its ID and set its content
-        document.getElementById("output").innerHTML = message;
+      if(currentColor == storedPlayer1Color)
+      {
+        document.getElementById("winInfo").innerHTML = "Some Text 1";
+      } else {
+        document.getElementById("winInfo").innerHTML = "Some Text 2";
+      }
     </script>
     
     <script src="app.js"></script>

@@ -74,14 +74,14 @@ function insert(col) {
 function horizontal(squareId) {
     let count = 0;
 
-    if(turn%2==0)
+    if((turn-1)%2==0)
     {
         currentColor = storedPlayer1Color;
     } else {
         currentColor = storedPlayer2Color;
     }
 
-    let row = (squareId / storedWidth) + 1;
+    let row = Math.floor(squareId / storedWidth) + 1;
     let upper = (storedWidth * row) - 1;
     let lower = upper - (storedWidth - 1);
 
@@ -113,7 +113,7 @@ function vertical(squareId)
         currentColor = storedPlayer2Color;
     }
 
-    let lower = (squareId / storedWidth);
+    let lower = Math.floor(squareId / storedWidth);
     let upper = ((storedWidth * storedHeight) - 1) - ((storedWidth - 1) - lower);
 
     for(let i = lower; i < upper; i+=storedWidth)
