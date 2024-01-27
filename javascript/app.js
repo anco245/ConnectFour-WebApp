@@ -85,7 +85,7 @@ function horizontal(squareId) {
     let upper = (storedWidth * row) - 1;
     let lower = upper - (storedWidth - 1);
 
-    for(let i = lower; i < upper; i++)
+    for(let i = lower; i <= upper; i++)
     {
         var square = document.querySelector('div[square-id="' + i + '"]');
 
@@ -106,17 +106,17 @@ function vertical(squareId)
 {
     let count = 0;
 
-    if(turn%2==0)
+    if((turn-1)%2==0)
     {
         currentColor = storedPlayer1Color;
     } else {
         currentColor = storedPlayer2Color;
     }
 
-    let lower = Math.floor(squareId / storedWidth);
+    let lower = Math.floor(squareId / storedWidth) - 1;
     let upper = ((storedWidth * storedHeight) - 1) - ((storedWidth - 1) - lower);
 
-    for(let i = lower; i < upper; i+=storedWidth)
+    for(let i = parseInt(lower); i <= parseInt(upper); i+=parseInt(storedWidth))
     {
         var square = document.querySelector('div[square-id="' + i + '"]');
         
