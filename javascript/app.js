@@ -24,6 +24,19 @@ let lastPos;
 
 let winner = 0;
 
+var leftSide = [];
+var rightSide = [];
+
+for(let i = (storedWidth-1); i < (storedWidth*storedHeight); i+=(storedWidth-1))
+{
+  leftSide.push(i);
+}
+
+for(let i = 0; i <= storedWidth * (storedHeight-1); i+=(storedWidth-1))
+{
+  rightSide.push(i);
+}
+
 
 function populateBoard() {
     for(let i = 0; i < storedHeight * storedWidth; i++)
@@ -133,56 +146,27 @@ function vertical(squareId)
     return false;
 }
 
-/*
-  private boolean leftDiagonal(int x, int y)
+
+
+function leftDiagonal(squareId)
+{//for initial starting point for left to right
+
+  var upper = parseInt(squareId);
+  var lower = parseInt(squareId);
+
+  while(lower > (storedWidth-1))
   {
-    int startx, endx = 0;
-    int starty, endy = 0;
-
-    //for initial starting point for left to right
-    if(x+y < altDeep)
-    {
-      startx = 0;
-      starty = x+y;
-
-      if(y <= altWide)
-      {
-        endx = x+y;
-        endy = 0;
-      } else {
-        endx = altWide;
-        endy = (x+y) - altWide;
-      }
-    } else {
-      startx = (x+y) - altDeep;
-      starty = altDeep;
-
-      endx = altWide;
-      //endy = altWide - hold - altDeep;
-      endy = altWide - altDeep;
-     }
-
-    int count = 0;
-
-    //check left to right, bottom up
-
-    while(startx <= endx)
-    {
-      if (count==4) {
-        return true;
-      } else if (board[startx][starty].equals(Main.currentPlayer)) {
-        count++;
-      } else if (!board[startx][starty].equals(Main.currentPlayer)) {
-        count = 0;
-      }
-
-      startx++;
-      starty--;
-    }
-
-    return count==4;
+    lower-=(storedWidth-1);
   }
 
+  while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
+  {
+    upper+=(storedWidth-1);
+  }
+
+}
+
+  /*
   private boolean rightDiagonal(int x, int y)
   {
     int startx, starty = 0;
@@ -233,7 +217,7 @@ function hasWinner()
 {
     if(turn < 7)
     {
-        return false;
+        //return false;
     }
 
     /*
@@ -246,6 +230,12 @@ function hasWinner()
     }
     */
 
+    if(turn == 3 && leftDiagonal(lastPos))
+    {
+      return true;
+    }
+
+    /*
     if(horizontal(lastPos, currentColor))
     {
       if(currentColor == storedPlayer1Color)
@@ -266,6 +256,7 @@ function hasWinner()
             return true;
         }
     }
+    */
 
     return false;
 }
