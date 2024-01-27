@@ -14,28 +14,12 @@ document.getElementById("gameboard").style.width = (storedWidth * 60) + "px";
 const storedPlayer1Color = sessionStorage.getItem("inputPlayer1Color");
 const storedPlayer2Color = sessionStorage.getItem("inputPlayer2Color");
 
-let currentColor;
-
-let turn = 0;
-
 const startPieces = [];
 
+let currentColor;
+let turn = 0;
 let lastPos;
-
 let winner = 0;
-
-var leftSide = [];
-var rightSide = [];
-
-for(let i = (storedWidth-1); i < (storedWidth*storedHeight); i+=(storedWidth-1))
-{
-  leftSide.push(i);
-}
-
-for(let i = 0; i <= storedWidth * (storedHeight-1); i+=(storedWidth-1))
-{
-  rightSide.push(i);
-}
 
 
 function populateBoard() {
@@ -146,13 +130,19 @@ function vertical(squareId)
     return false;
 }
 
-
-
 function leftDiagonal(squareId)
 {//for initial starting point for left to right
 
+  let count = 0;
   var upper = parseInt(squareId);
   var lower = parseInt(squareId);
+
+  if((turn-1)%2==0)
+    {
+        currentColor = storedPlayer1Color;
+    } else {
+        currentColor = storedPlayer2Color;
+    }
 
   while(lower > (storedWidth-1))
   {
@@ -162,6 +152,20 @@ function leftDiagonal(squareId)
   while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
   {
     upper+=(storedWidth-1);
+  }
+
+  for(let i = parseInt(lower); i <= upper; i+=(storedWidth-1))
+  {
+    var square = document.querySelector('div[square-id="' + i + '"]');
+        
+    if(count==3)
+    {
+      return true;
+    } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
+      count++;
+    } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
+      count = 0;
+    }
   }
 
 }
@@ -217,7 +221,7 @@ function hasWinner()
 {
     if(turn < 7)
     {
-        //return false;
+        return false;
     }
 
     /*
@@ -230,13 +234,14 @@ function hasWinner()
     }
     */
 
+    /*
     if(turn == 3 && leftDiagonal(lastPos))
     {
       return true;
     }
+    */
 
-    /*
-    if(horizontal(lastPos, currentColor))
+    if(horizontal(lastPos) || vertical(lastPos) || leftDiagonal(lastPos))
     {
       if(currentColor == storedPlayer1Color)
       {
@@ -246,17 +251,7 @@ function hasWinner()
         winner = 2;
         return true;
       }
-    } else if (vertical(lastPos, currentColor)) {
-        if(currentColor == storedPlayer1Color)
-        {
-            winner = 1;
-            return true;
-        } else {
-            winner = 2;
-            return true;
-        }
     }
-    */
 
     return false;
 }
