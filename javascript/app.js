@@ -12,7 +12,7 @@ const storedWidth = sessionStorage.getItem("inputWidth");
 document.getElementById("gameboard").style.height = (storedHeight * 60) + "px";
 document.getElementById("gameboard").style.width = (storedWidth * 60) + "px";
 
-document.getElementById("columnLabels").style.width = (storedWidth * 60) + "px";
+document.getElementById("columnLabels").style.maxWidth = (storedWidth * 60) + "px";
 
 const storedPlayer1Color = sessionStorage.getItem("inputPlayer1Color");
 const storedPlayer2Color = sessionStorage.getItem("inputPlayer2Color");
@@ -47,6 +47,10 @@ function createLabels() {
       square.innerHTML = labelsArray;
 
       square.setAttribute('label-num', i);
+
+      document.getElementById("gameboard").style.width = (storedWidth * 60) + "px";
+
+      square.style.height = (storedHeight * 75) + "px";
 
       columnLabels.append(square);
   })

@@ -4,13 +4,19 @@
   flex-wrap: wrap;
   margin: auto;
   border: 1px solid black; /* Border style, color, and width */
+  position: relative;
+  top: 40px;
+  /*position: relative;
+  top: -420px;
+  */
 }
 
 #columnLabels {
   display: flex;
   margin: auto;
-  background-color: rgb(213, 218, 224);
-  text-align: center;
+  position: relative;
+  top: -375px;
+
 }
 
 #titleForPage {
@@ -20,7 +26,8 @@
 .label {
   height: 30px;
   width: 60px;
-  position: relative;
+  text-align: center;
+  /*position: relative;*/
 }
 
 .square {
