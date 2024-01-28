@@ -18,22 +18,18 @@ const storedPlayer1Color = sessionStorage.getItem("inputPlayer1Color");
 const storedPlayer2Color = sessionStorage.getItem("inputPlayer2Color");
 
 const startPieces = [];
-let labels = [];
+let labelsArray = [];
 
 //populating div
 for(let i = 1; i <= storedWidth; i++)
 {
-  labels.push(i);
+  labelsArray.push(i);
 }
 
 let currentColor;
 let turn = 0;
 let lastPos;
 let winner = 0;
-
-//export {winner};
-//export {storedPlayer1Color};
-//export {storedPlayer2Color};
 
 
 function populateBoard() {
@@ -44,11 +40,11 @@ function populateBoard() {
 }
 
 function createLabels() {
-  labels.forEach((labels, i) => {
+  labelsArray.forEach((labelsArray, i) => {
       const square = document.createElement('div');
 
       square.classList.add('label');
-      square.innerHTML = labels;
+      square.innerHTML = labelsArray;
 
       square.setAttribute('label-num', i);
 
@@ -197,7 +193,6 @@ function leftDiagonal(squareId)
   }
 }
 
-
 function rightDiagonal(squareId)
 {
   let count = 0;
@@ -279,3 +274,20 @@ function hasWinner()
 populateBoard();
 createBoard();
 createLabels();
+
+// Get all the label elements within the grid
+var labs = columnLabels.getElementsByClassName('label');
+
+// Define the function to be called when a label is clicked
+function handleClick(event) {
+
+  // Identify the clicked label using its ID or other properties
+  var clickedLabelNum = parseInt(event.target.getAttribute('label-num'));
+  
+  insert((clickedLabelNum + 1));
+}
+
+// Add click event listener to each label
+for (var i = 0; i < labs.length; i++) {
+  labs[i].addEventListener('click', handleClick);
+}
