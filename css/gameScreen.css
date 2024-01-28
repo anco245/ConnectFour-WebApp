@@ -6,16 +6,25 @@
   border: 1px solid black; /* Border style, color, and width */
 }
 
+#columnLabels {
+  display: flex;
+  margin: auto;
+  background-color: rgb(213, 218, 224);
+  text-align: center;
+}
+
 #titleForPage {
   text-align: center;
 }
 
-#output {
-  font-size: 50px;
-}
-
 #form {
   text-align: center;
+}
+
+.label {
+  height: 30px;
+  width: 60px;
+  position: relative;
 }
 
 .square {

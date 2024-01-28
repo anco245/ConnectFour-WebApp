@@ -7,18 +7,23 @@
     <title>Connect Four</title>
   </head>
   <body>
-    <p id="winInfo">Some text</p>
+    <p id="winInfo">You Win!</p>
 
     <script>
-      if(currentColor == storedPlayer1Color)
+      var message = "Congratulations Player " + winner + "! You Win!"
+      document.getElementById("winInfo").innerHTML = message;
+
+      if(winner == 1)
       {
-        document.getElementById("winInfo").innerHTML = "Some Text 1";
+        document.body.style.backgroundColor = storedPlayer1Color;
       } else {
-        document.getElementById("winInfo").innerHTML = "Some Text 2";
+        document.body.style.backgroundColor = storedPlayer2Color;
       }
+
+
     </script>
     
-    <script src="C:\xampp\htdocs\ConnectFour-WebApp\javascript\app.js"></script>
+    <script src="C:\xampp\htdocs\ConnectFour-WebApp\javascript\winScreen.js"></script>
 
   </body>
 </html>
