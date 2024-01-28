@@ -113,7 +113,7 @@ function horizontal(squareId) {
     {
         var square = document.querySelector('div[square-id="' + i + '"]');
 
-        if(count==3)
+        if(count==4)
         {
             return true;
         } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
@@ -144,7 +144,7 @@ function vertical(squareId)
     {
         var square = document.querySelector('div[square-id="' + i + '"]');
         
-        if(count==3)
+        if(count==4)
         {
             return true;
         } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
@@ -186,7 +186,7 @@ function leftDiagonal(squareId)
   {
     var square = document.querySelector('div[square-id="' + i + '"]');
         
-    if(count==3)
+    if(count==4)
     {
       return true;
     } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
@@ -225,7 +225,7 @@ function rightDiagonal(squareId)
   {
     var square = document.querySelector('div[square-id="' + i + '"]');
         
-    if(count==3)
+    if(count==4)
     {
       return true;
     } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
