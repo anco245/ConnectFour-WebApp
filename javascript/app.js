@@ -11,8 +11,10 @@ const storedWidth = sessionStorage.getItem("inputWidth");
 // Applies the given height and weight to the create the size of the board
 document.getElementById("gameboard").style.height = (storedHeight * 60) + "px";
 document.getElementById("gameboard").style.width = (storedWidth * 60) + "px";
+document.getElementById("gameboard").style.top = "0px";
 
 document.getElementById("columnLabels").style.maxWidth = (storedWidth * 60) + "px";
+document.getElementById("columnLabels").style.minWidth = (storedWidth * 60) + "px";
 
 const storedPlayer1Color = sessionStorage.getItem("inputPlayer1Color");
 const storedPlayer2Color = sessionStorage.getItem("inputPlayer2Color");
@@ -278,6 +280,14 @@ function hasWinner()
 populateBoard();
 createBoard();
 createLabels();
+
+document.addEventListener('DOMContentLoaded', function () {
+  var centeredDiv = document.getElementById('gameboard');
+  var rect = centeredDiv.getBoundingClientRect();
+
+  document.getElementById("columnLabels").style.right = rect.right + "px";
+  document.getElementById("columnLabels").style.left = rect.left + "px";
+});
 
 // Get all the label elements within the grid
 var labs = columnLabels.getElementsByClassName('label');
