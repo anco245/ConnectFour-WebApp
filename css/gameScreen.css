@@ -11,11 +11,12 @@
   display: flex;
   margin: auto;
   position: absolute;
-  top: 125px;
+  top: 110px;
 }
 
 #titleForPage {
   text-align: center;
+  font-family: monospace;
 }
 
 .label {
