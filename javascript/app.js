@@ -220,12 +220,12 @@ function rightDiagonal(squareId)
 
   while(lower > (storedWidth-1))
   {
-    lower-=(storedWidth+1);
+    lower-=(parseInt(storedWidth)+1);
   }
 
   while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
   {
-    upper+=(storedWidth+1);
+    upper = parseInt(upper) + (parseInt(storedWidth)+1);
   }
 
   for(let i = parseInt(lower); i <= upper; i+=(storedWidth-1))
