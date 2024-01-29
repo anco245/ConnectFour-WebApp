@@ -228,7 +228,7 @@ function rightDiagonal(squareId)
     upper = parseInt(upper) + (parseInt(storedWidth)+1);
   }
 
-  for(let i = parseInt(lower); i <= upper; i+=(storedWidth-1))
+  for(let i = parseInt(lower); i <= upper; i+=(parseInt(storedWidth)+1))
   {
     var square = document.querySelector('div[square-id="' + i + '"]');
         
