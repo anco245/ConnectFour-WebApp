@@ -115,11 +115,13 @@ function horizontal(squareId) {
     {
         var square = document.querySelector('div[square-id="' + i + '"]');
 
-        if(count==4)
-        {
+        if (square.firstChild.firstChild.classList.contains(currentColor)) {
+          count++;
+
+          if(count==4)
+          {
             return true;
-        } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
-            count++;
+          }
         } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
             count = 0;
         }
@@ -144,16 +146,18 @@ function vertical(squareId)
 
     for(let i = parseInt(lower); i <= parseInt(upper); i+=parseInt(storedWidth))
     {
-        var square = document.querySelector('div[square-id="' + i + '"]');
+      var square = document.querySelector('div[square-id="' + i + '"]');
         
+      if (square.firstChild.firstChild.classList.contains(currentColor)) {
+        count++;
+
         if(count==4)
         {
-            return true;
-        } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
-            count++;
-        } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
-            count = 0;
+          return true;
         }
+      } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
+          count = 0;
+      }
     }
 
     return false;
@@ -188,13 +192,15 @@ function leftDiagonal(squareId)
   {
     var square = document.querySelector('div[square-id="' + i + '"]');
         
-    if(count==4)
-    {
-      return true;
-    } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
+    if (square.firstChild.firstChild.classList.contains(currentColor)) {
       count++;
+
+      if(count==4)
+      {
+        return true;
+      }
     } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
-      count = 0;
+        count = 0;
     }
   }
 }
@@ -226,13 +232,15 @@ function rightDiagonal(squareId)
   {
     var square = document.querySelector('div[square-id="' + i + '"]');
         
-    if(count==4)
-    {
-      return true;
-    } else if (square.firstChild.firstChild.classList.contains(currentColor)) {
+    if (square.firstChild.firstChild.classList.contains(currentColor)) {
       count++;
+
+      if(count==4)
+      {
+        return true;
+      }
     } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
-      count = 0;
+        count = 0;
     }
   }
 }
@@ -299,6 +307,10 @@ function handleClick(event) {
   var clickedLabelNum = parseInt(event.target.getAttribute('label-num'));
   
   insert((clickedLabelNum + 1));
+
+  if(hasWinner()) {
+    window.location.href = "winScreen.html";
+  }
 }
 
 // Add click event listener to each label

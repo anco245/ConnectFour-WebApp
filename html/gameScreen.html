@@ -19,17 +19,6 @@
     <button type="button" onclick="goBack()">Back</button>
 
     <script>
-      function submitForm() {
-        // Get the input value
-        var inputCol = document.getElementById("column").value;
-
-        insert(inputCol);
-
-        if(hasWinner()) {
-          window.location.href = "winScreen.html";
-        }
-      }
-
       function goBack() {
         turn = 0;
         window.location.href = "introScreen.html";
