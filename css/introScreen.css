@@ -4,7 +4,7 @@ body {
     background-image: url(https://i5.walmartimages.com/asr/272579ac-5ac9-4a48-a369-61c1cfc4fbfe_1.7a5a95419453bcf43abe92e2998a4f71.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF);
 }
 
-#form {
+#infoBlock {
     text-align: center;
     font-family: monospace;
     background-color: white;
@@ -13,6 +13,10 @@ body {
     margin-top: -30px;
     max-width: 480px;
     height: 450px;
+}
+
+#form {
+    margin-top: 50px;
 }
 
 h1 {
