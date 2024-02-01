@@ -163,29 +163,27 @@ function vertical(squareId)
     return false;
 }
 
-function leftDiagonal(squareId)
+function forwardSlash(squareId)
 {
-  //for initial starting point for left to right
-
   let count = 0;
   var upper = parseInt(squareId);
   var lower = parseInt(squareId);
 
   if((turn-1)%2==0)
-    {
-        currentColor = storedPlayer1Color;
-    } else {
-        currentColor = storedPlayer2Color;
-    }
+  {
+    currentColor = storedPlayer1Color;
+  } else {
+    currentColor = storedPlayer2Color;
+  }
 
   while(lower > (storedWidth-1))
   {
-    lower-=(storedWidth-1);
+    lower = lower - (storedWidth-1);
   }
 
   while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
   {
-    upper+=(storedWidth-1);
+    upper = upper + parseInt(storedWidth-1);
   }
 
   for(let i = parseInt(lower); i <= upper; i+=(storedWidth-1))
@@ -205,27 +203,28 @@ function leftDiagonal(squareId)
   }
 }
 
-function rightDiagonal(squareId)
+function backSlash(squareId)
 {
   let count = 0;
   var upper = parseInt(squareId);
   var lower = parseInt(squareId);
 
   if((turn-1)%2==0)
-    {
-        currentColor = storedPlayer1Color;
-    } else {
-        currentColor = storedPlayer2Color;
-    }
-
-  while(lower > (storedWidth-1))
   {
-    lower-=(parseInt(storedWidth)+1);
+    currentColor = storedPlayer1Color;
+  } else {
+    currentColor = storedPlayer2Color;
+  }
+
+  //false
+  while(!(lower > storedWidth || lower%storedWidth == 0))
+  {
+    lower = lower - (parseInt(storedWidth)+1);
   }
 
   while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
   {
-    upper = parseInt(upper) + (parseInt(storedWidth)+1);
+    upper = upper + (parseInt(storedWidth)+1);
   }
 
   for(let i = parseInt(lower); i <= upper; i+=(parseInt(storedWidth)+1))
@@ -252,25 +251,8 @@ function hasWinner()
         return false;
     }
 
-    /*
-    if (turn > 10) {
-      if (leftDiagonal(lastPos.get(0), lastPos.get(1))) {
-        return true;
-      } else if (rightDiagonal(lastPos.get(0), lastPos.get(1))) {
-        return true;
-      }
-    }
-    */
-
-    /*
-    if(turn == 3 && leftDiagonal(lastPos))
-    {
-      return true;
-    }
-    */
-
-    if(horizontal(lastPos) || vertical(lastPos) || leftDiagonal(lastPos) ||
-        rightDiagonal(lastPos))
+    if(horizontal(lastPos) || vertical(lastPos) || forwardSlash(lastPos) ||
+        backSlash(lastPos))
     {
       if(currentColor == storedPlayer1Color)
       {
@@ -310,6 +292,8 @@ function handleClick(event) {
 
   if(hasWinner()) {
     window.location.href = "winScreen.html";
+  } else if (turn == storedWidth*storedHeight) {
+    window.location.href = "introScreen.html";
   }
 }
 
