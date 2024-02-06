@@ -141,7 +141,13 @@ function vertical(squareId)
         currentColor = storedPlayer2Color;
     }
 
-    let lower = Math.floor(squareId / storedWidth) - 1;
+    let lower = squareId;
+
+    while(lower > storedWidth)
+    {
+      lower = lower - storedWidth;
+    }
+    
     let upper = ((storedWidth * storedHeight) - 1) - ((storedWidth - 1) - lower);
 
     for(let i = parseInt(lower); i <= parseInt(upper); i+=parseInt(storedWidth))
