@@ -1,4 +1,10 @@
-#winInfo {
-    color: white;
-    font-family: monospace;
+body {
+    background-color: black;
+    background-image: url(https://sdaho.org/wp-content/uploads/2017/09/winner.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 600px;
+    background-size: 1500px;
+    position: relative;
+
 }
