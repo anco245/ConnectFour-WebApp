@@ -73,6 +73,8 @@ function createBoard() {
 
 function insert(col) {
 
+    //make it so that it's checked if a piece is being placed in a column that's already full
+
     col = col-1;
 
     if(turn%2==0)
@@ -297,6 +299,9 @@ function handleClick(event) {
   insert((clickedLabelNum + 1));
 
   if(hasWinner()) {
+    sessionStorage.setItem("winningPlayer", winner);
+    sessionStorage.setItem("winningColor", currentColor);
+
     window.location.href = "winScreen.html";
   } else if (turn == storedWidth*storedHeight) {
     window.location.href = "introScreen.html";
