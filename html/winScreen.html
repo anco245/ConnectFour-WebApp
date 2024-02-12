@@ -14,7 +14,7 @@
       const winningPlayer = sessionStorage.getItem("winningPlayer");
       const winningColor = sessionStorage.getItem("winningColor");
 
-      var message = "Congratulations Player " + winningPlayer;
+      var message = "Congratulations Player " + winningPlayer + "!\nYou win!";
       document.getElementById("winInfo").innerHTML = message;
 
       document.body.style.backgroundColor = winningColor;
