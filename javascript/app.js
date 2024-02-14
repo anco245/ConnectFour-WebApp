@@ -179,8 +179,16 @@ function vertical(squareId)
     return false;
 }
 
+// from bottom left to top right (/)
 function forwardSlash(squareId)
 {
+  /*
+    This if statement just checks whether the recently inserted squareId is located 
+    at either the top left or bottom right of the board. If it's in either one
+    of those locations, it can just be automatically assumed that there won't be
+    a winner along this diagonal as it's only one piece.
+  */
+
   if(squareId == storedWidth*storedHeight - 1 || squareId == 0)
   {
     return false;
@@ -196,6 +204,7 @@ function forwardSlash(squareId)
       currentColor = storedPlayer2Color;
     }
 
+    //determines the lower bound of the forward diagonal
     while(lower > (storedWidth-1))
     {
       lower = lower - (storedWidth-1);
@@ -224,8 +233,15 @@ function forwardSlash(squareId)
   }
 }
 
+// from top left to bottom right (\)
 function backSlash(squareId)
 {
+  /*
+    This if statement just checks whether the recently inserted squareId is located 
+    at either the bottom left or top right of the board. If it's in either one
+    of those locations, it can just be automatically assumed that there won't be
+    a winner along this diagonal as it's only one piece.
+  */
   if(squareId == storedWidth - 1 || squareId == (storedWidth*storedHeight - 1) - (storedWidth - 1)) {
     return false;
   } else {
@@ -296,6 +312,8 @@ populateBoard();
 createBoard();
 createLabels();
 
+// This centers the labels (including the event listeners) over each column of the gameboard
+// otherwise the labels just hang out on the left side of the screen
 document.addEventListener('DOMContentLoaded', function () {
   var centeredDiv = document.getElementById('gameboard');
   var rect = centeredDiv.getBoundingClientRect();
@@ -307,13 +325,12 @@ document.addEventListener('DOMContentLoaded', function () {
 // Get all the label elements within the grid
 var labs = columnLabels.getElementsByClassName('label');
 
-
 // Add click event listener to each label
 for (var i = 0; i < labs.length; i++) {
   labs[i].addEventListener('click', handleClick);
 }
 
-// Define the function to be called when a label is clicked
+// Defines the function to be called when a label is clicked
 function handleClick(event) {
 
   // Identify the clicked label using its ID or other properties
@@ -322,20 +339,29 @@ function handleClick(event) {
   insert((clickedLabelNum + 1));
 
   if(hasWinner()) {
+    //remove turn description
     document.getElementById("turnDescription").innerHTML = "";
+
     var message = "<strong>Congratulations Player " + winner + "! You Win!</strong>";
     document.getElementById("winningMessage").innerHTML = message;
     document.getElementById("winningMessage").style.border = "2px dotted black";
 
+    //removes all eventlisteners from gameboard 
+    // (so the player can't add another piece when the game is over)
     for (var i = 0; i < labs.length; i++) {
       labs[i].removeEventListener("click", handleClick);
     }
 
   } else if (turn == storedWidth*storedHeight) {
+    //remove turn description
+    document.getElementById("turnDescription").innerHTML = "";
+
     var message = "<strong>It's a tie</strong>";
     document.getElementById("winningMessage").innerHTML = message;
     document.getElementById("winningMessage").style.border = "2px dotted black";
 
+    //removes all eventlisteners from gameboard 
+    // (so the player can't add another piece when the game is over)
     for (var i = 0; i < labs.length; i++) {
       labs[i].removeEventListener("click", handleClick);
     }
