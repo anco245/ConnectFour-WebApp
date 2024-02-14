@@ -33,7 +33,6 @@ let turn = 0;
 let lastPos;
 let winner = 0;
 
-
 function populateBoard() {
     for(let i = 0; i < storedHeight * storedWidth; i++)
     {
@@ -290,6 +289,14 @@ document.addEventListener('DOMContentLoaded', function () {
 // Get all the label elements within the grid
 var labs = columnLabels.getElementsByClassName('label');
 
+if(winner == 0)
+{
+  // Add click event listener to each label
+  for (var i = 0; i < labs.length; i++) {
+    labs[i].addEventListener('click', handleClick);
+  }
+}
+
 // Define the function to be called when a label is clicked
 function handleClick(event) {
 
@@ -299,16 +306,11 @@ function handleClick(event) {
   insert((clickedLabelNum + 1));
 
   if(hasWinner()) {
-    sessionStorage.setItem("winningPlayer", winner);
-    sessionStorage.setItem("winningColor", currentColor);
+    var message = "Congratulations Player " + winner + "! You Win";
+    sessionStorage.setItem("winningMessage", message);
 
-    window.location.href = "winScreen.html";
+    window.location.href = "gameScreen.html";
   } else if (turn == storedWidth*storedHeight) {
     window.location.href = "introScreen.html";
   }
-}
-
-// Add click event listener to each label
-for (var i = 0; i < labs.length; i++) {
-  labs[i].addEventListener('click', handleClick);
 }

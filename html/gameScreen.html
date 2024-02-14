@@ -14,6 +14,7 @@
 
     <br><br><div id="gameboard"></div><br>
     <div id="columnLabels"></div>
+    <div id="winningMessage"></div>
 
     <button type="button" onclick="goBack()">Back</button>
 
@@ -21,6 +22,11 @@
       function goBack() {
         sessionStorage.clear();
         window.location.href = "introScreen.html";
+      }
+
+      if(sessionStorage.getItem("winningMessage") != null)
+      {
+        document.getElementById("winningMessage").innerHTML = sessionStorage.getItem("winningMessage");
       }
     </script>
     
