@@ -19,6 +19,13 @@
   font-family: monospace;
 }
 
+#winningMessage {
+  text-align: center;
+  font-family: monospace;
+  max-width: 300px;
+  margin: auto;
+}
+
 .label {
   height: 30px;
   width: 60px;

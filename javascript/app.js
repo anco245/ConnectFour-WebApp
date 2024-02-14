@@ -305,15 +305,20 @@ function handleClick(event) {
 
   if(hasWinner()) {
     var message = "Congratulations Player " + winner + "! You Win";
-
     document.getElementById("winningMessage").innerHTML = message;
+    document.getElementById("winningMessage").style.border = "2px dotted black";
 
     for (var i = 0; i < labs.length; i++) {
       labs[i].removeEventListener("click", handleClick);
     }
 
-
   } else if (turn == storedWidth*storedHeight) {
-    window.location.href = "introScreen.html";
+    var message = "It's a tie";
+    document.getElementById("winningMessage").innerHTML = message;
+    document.getElementById("winningMessage").style.border = "2px dotted black";
+
+    for (var i = 0; i < labs.length; i++) {
+      labs[i].removeEventListener("click", handleClick);
+    }
   }
 }
