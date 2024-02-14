@@ -304,7 +304,7 @@ function handleClick(event) {
   insert((clickedLabelNum + 1));
 
   if(hasWinner()) {
-    var message = "Congratulations Player " + winner + "! You Win";
+    var message = "<strong>Congratulations Player " + winner + "! You Win</strong>";
     document.getElementById("winningMessage").innerHTML = message;
     document.getElementById("winningMessage").style.border = "2px dotted black";
 
@@ -313,7 +313,7 @@ function handleClick(event) {
     }
 
   } else if (turn == storedWidth*storedHeight) {
-    var message = "It's a tie";
+    var message = "<strong>It's a tie</strong>";
     document.getElementById("winningMessage").innerHTML = message;
     document.getElementById("winningMessage").style.border = "2px dotted black";
 
