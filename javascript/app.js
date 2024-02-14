@@ -289,12 +289,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // Get all the label elements within the grid
 var labs = columnLabels.getElementsByClassName('label');
 
-if(winner == 0)
-{
-  // Add click event listener to each label
-  for (var i = 0; i < labs.length; i++) {
-    labs[i].addEventListener('click', handleClick);
-  }
+
+// Add click event listener to each label
+for (var i = 0; i < labs.length; i++) {
+  labs[i].addEventListener('click', handleClick);
 }
 
 // Define the function to be called when a label is clicked
@@ -307,9 +305,14 @@ function handleClick(event) {
 
   if(hasWinner()) {
     var message = "Congratulations Player " + winner + "! You Win";
-    sessionStorage.setItem("winningMessage", message);
 
-    window.location.href = "gameScreen.html";
+    document.getElementById("winningMessage").innerHTML = message;
+
+    for (var i = 0; i < labs.length; i++) {
+      labs[i].removeEventListener("click", handleClick);
+    }
+
+
   } else if (turn == storedWidth*storedHeight) {
     window.location.href = "introScreen.html";
   }
