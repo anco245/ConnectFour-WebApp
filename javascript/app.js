@@ -181,81 +181,90 @@ function vertical(squareId)
 
 function forwardSlash(squareId)
 {
-  let count = 0;
-  var upper = parseInt(squareId);
-  var lower = parseInt(squareId);
-
-  if((turn-1)%2==0)
+  if(squareId == storedWidth*storedHeight - 1 || squareId == 0)
   {
-    currentColor = storedPlayer1Color;
+    return false;
   } else {
-    currentColor = storedPlayer2Color;
-  }
+    let count = 0;
+    var upper = parseInt(squareId);
+    var lower = parseInt(squareId);
 
-  while(lower > (storedWidth-1))
-  {
-    lower = lower - (storedWidth-1);
-  }
+    if((turn-1)%2==0)
+    {
+      currentColor = storedPlayer1Color;
+    } else {
+      currentColor = storedPlayer2Color;
+    }
 
-  while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
-  {
-    upper = upper + parseInt(storedWidth-1);
-  }
+    while(lower > (storedWidth-1))
+    {
+      lower = lower - (storedWidth-1);
+    }
 
-  for(let i = parseInt(lower); i <= upper; i+=(storedWidth-1))
-  {
-    var square = document.querySelector('div[square-id="' + i + '"]');
-        
-    if (square.firstChild.firstChild.classList.contains(currentColor)) {
-      count++;
+    while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
+    {
+      upper = upper + parseInt(storedWidth-1);
+    }
 
-      if(count==4)
-      {
-        return true;
+    for(let i = parseInt(lower); i <= upper; i+=(storedWidth-1))
+    {
+      var square = document.querySelector('div[square-id="' + i + '"]');
+          
+      if (square.firstChild.firstChild.classList.contains(currentColor)) {
+        count++;
+
+        if(count==4)
+        {
+          return true;
+        }
+      } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
+          count = 0;
       }
-    } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
-        count = 0;
     }
   }
 }
 
 function backSlash(squareId)
 {
-  let count = 0;
-  var upper = parseInt(squareId);
-  var lower = parseInt(squareId);
-
-  if((turn-1)%2==0)
-  {
-    currentColor = storedPlayer1Color;
+  if(squareId == storedWidth - 1 || squareId == (storedWidth*storedHeight - 1) - (storedWidth - 1)) {
+    return false;
   } else {
-    currentColor = storedPlayer2Color;
-  }
+    let count = 0;
+    var upper = parseInt(squareId);
+    var lower = parseInt(squareId);
 
-  //false
-  while(!(lower > storedWidth || lower%storedWidth == 0))
-  {
-    lower = lower - (parseInt(storedWidth)+1);
-  }
+    if((turn-1)%2==0)
+    {
+      currentColor = storedPlayer1Color;
+    } else {
+      currentColor = storedPlayer2Color;
+    }
 
-  while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
-  {
-    upper = upper + (parseInt(storedWidth)+1);
-  }
+    //false
+    while(!(lower > storedWidth || lower%storedWidth == 0))
+    {
+      lower = lower - (parseInt(storedWidth)+1);
+    }
 
-  for(let i = parseInt(lower); i <= upper; i+=(parseInt(storedWidth)+1))
-  {
-    var square = document.querySelector('div[square-id="' + i + '"]');
-        
-    if (square.firstChild.firstChild.classList.contains(currentColor)) {
-      count++;
+    while(upper < (storedWidth * storedHeight - 1) - (storedWidth-1))
+    {
+      upper = upper + (parseInt(storedWidth)+1);
+    }
 
-      if(count==4)
-      {
-        return true;
+    for(let i = parseInt(lower); i <= upper; i+=(parseInt(storedWidth)+1))
+    {
+      var square = document.querySelector('div[square-id="' + i + '"]');
+          
+      if (square.firstChild.firstChild.classList.contains(currentColor)) {
+        count++;
+
+        if(count==4)
+        {
+          return true;
+        }
+      } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
+          count = 0;
       }
-    } else if (!square.firstChild.firstChild.classList.contains(currentColor)) {
-        count = 0;
     }
   }
 }
@@ -314,7 +323,7 @@ function handleClick(event) {
 
   if(hasWinner()) {
     document.getElementById("turnDescription").innerHTML = "";
-    var message = "<strong>Congratulations Player " + winner + "! You Win</strong>";
+    var message = "<strong>Congratulations Player " + winner + "! You Win!</strong>";
     document.getElementById("winningMessage").innerHTML = message;
     document.getElementById("winningMessage").style.border = "2px dotted black";
 
