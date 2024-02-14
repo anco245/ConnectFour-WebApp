@@ -96,6 +96,15 @@ function insert(col) {
     }
 
     turn++;
+
+    if(turn%2==0)
+    {
+      var turnDes = "Player 1's turn. You are " + storedPlayer1Color;
+      document.getElementById("turnDescription").innerHTML = turnDes;
+    } else {
+      var turnDes = "Player 2's turn. You are " + storedPlayer2Color;
+      document.getElementById("turnDescription").innerHTML = turnDes;
+    }
 }
 
 function horizontal(squareId) {
@@ -304,6 +313,7 @@ function handleClick(event) {
   insert((clickedLabelNum + 1));
 
   if(hasWinner()) {
+    document.getElementById("turnDescription").innerHTML = "";
     var message = "<strong>Congratulations Player " + winner + "! You Win</strong>";
     document.getElementById("winningMessage").innerHTML = message;
     document.getElementById("winningMessage").style.border = "2px dotted black";

@@ -14,11 +14,15 @@
 
     <br><br><div id="gameboard"></div><br>
     <div id="columnLabels"></div>
+    <div id="turnDescription"></div>
     <div id="winningMessage"></div>
 
     <button type="button" onclick="goBack()">Back</button>
 
     <script>
+      var turnDes = "Player 1's turn. You are " + sessionStorage.getItem("inputPlayer1Color");
+      document.getElementById("turnDescription").innerHTML = turnDes;
+
       function goBack() {
         sessionStorage.clear();
         window.location.href = "introScreen.html";
