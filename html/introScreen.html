@@ -10,7 +10,7 @@
   <body>    
 
     <div id="infoBlock">
-      <h1>Connect Four Online Game</h1>
+      <h1>Connect Four Web Version</h1>
       <p>Before you press start, enter the height and width of the board<br>**Minimum 4x4 and maximum 6x22**</p>
 
       <div id=form>
@@ -20,8 +20,8 @@
     
           <!--name makes sure if another radio button is selected, that the previous one is deselected-->
           <p>Will Player 1 be Red or Yellow?</p>
-          <input type="radio" class="playerColor" name="playerColor" value="red" checked> Red
-          <input type="radio" class="playerColor" name="playerColor" value="yellow"> Yellow
+          <label>Red<input type="radio" class="playerColor" name="playerColor" value="red" checked></label>
+          <label>Yellow<input type="radio" class="playerColor" name="playerColor" value="yellow"></label>
           <br>
           <br>
           <button type="button" onclick="submitForm()">Start</button>

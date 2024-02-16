@@ -16,6 +16,8 @@ document.getElementById("gameboard").style.top = "0px";
 document.getElementById("columnLabels").style.maxWidth = (storedWidth * 60) + "px";
 document.getElementById("columnLabels").style.minWidth = (storedWidth * 60) + "px";
 
+document.getElementById("columnLabels").style.maxHeight = (storedHeight * 60 + 30) + "px";
+
 const storedPlayer1Color = sessionStorage.getItem("inputPlayer1Color");
 const storedPlayer2Color = sessionStorage.getItem("inputPlayer2Color");
 
